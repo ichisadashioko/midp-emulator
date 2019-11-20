@@ -1,4 +1,6 @@
-# Reference
+# References
+
+- [Mobile Information Device Profile](https://en.wikipedia.org/wiki/Mobile_Information_Device_Profile)
 
 - [freej2me](https://github.com/hex007/freej2me)
 
