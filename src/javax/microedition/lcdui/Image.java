@@ -50,7 +50,7 @@ package javax.microedition.lcdui;
  * g.drawImage(source, 0, 0, TOP|LEFT);
  * </pre>
  * 
- * <h2>Alpha Processing</h2>
+ * <h3>Alpha Processing</h3>
  * 
  * <p>
  * Every pixel within a mutable image is always fully opaque. Immutable images
@@ -80,6 +80,92 @@ package javax.microedition.lcdui;
  * {@code Display.numAlphaLevels()} method.) If an implementation does not
  * support alpha blending, any semitransparent pixels in the source data must be
  * replaced with fully transparent pixels in the new image.
+ * </p>
+ * 
+ * <h3>PNG Image Format</h3>
+ * 
+ * <p>
+ * Implementations are required to support images stored in the PNG format, as
+ * specified by the <i>PNG (Portable Network Graphics) Specification, Version
+ * 1.0</i>. All conforming MIDP implementations are also conformant to the
+ * minimum set of requirements given by the <i>PNG Specification</i>. MIDP
+ * implementations also must conform to additional requirements given here with
+ * respect to handling of PNG images. Note that the requirements listed here
+ * take precedence over any conflicting recommendations given in the <i>PNG
+ * Specification</i>.
+ * </p>
+ * 
+ * <h4>Critical Chunks</h4>
+ * 
+ * <p>
+ * All of the 'critical' chunks specified by PNG must be supported. The
+ * paragraphs below describe these critical chunks.
+ * </p>
+ * 
+ * <p>
+ * The IHDR chunk. MIDP devices must handle the following values in the IHDR
+ * chunk:
+ * </p>
+ * 
+ * <ul>
+ * <li>All positive values of width and height are supported; however, a very
+ * large image may not be readable because of memory constraints. The dimensions
+ * of the resulting {@code Image} object must match the dimemsions of the PNG
+ * image. That is, the values returned by {@code getWidth()} and
+ * {@code getHeight()} and the rendered width and height must equal the width
+ * and height specified in the IHDR chunk.</li>
+ * 
+ * <li>All color types are supported, althought the appearance of the image will
+ * be dependent on the capabilities of the device's screen. Color types that
+ * include alpha channel data are supported.</li>
+ * 
+ * <li>For color types {@code 4} & {@code 6} (grayscale with alpha and RGB width
+ * alpha, respectively) the alpha channel must be decoded. Any pixels with an
+ * alpha value of zero must be treated as transparent. Any pixels with an alpha
+ * value of {@code 255} (for images with {@code 8} bits per sample) or
+ * {@code 65535} (for images with {@code 16} bits per sample) must be treated as
+ * opaque. If rendering with alpha blending is supported, any pixels with
+ * intermediate alpha values must be carried through to the resulting image. If
+ * alpha blending is not supported, any pixels with intermediate alpha values
+ * must be replaced with fully transparent pixels.</li>
+ * 
+ * <li>All bit depth values for the given color type are supported.</li>
+ * <li>Compression method {@code 0} (deflate) is the only supported compression
+ * method. This method utilizes the "zlib" compression scheme, which is also
+ * used for jar files; thus, the decompression (inflate) code may be shared
+ * between the jar decoding and PNG decoding implementations. As noted in the
+ * PNG specification, the compressed data stream may comprised internally of
+ * both compressed and uncompressed (raw) data.</li>
+ * 
+ * <li>The filter method represents a series of encoding schemes that may be
+ * used to optimize compression. The PNG spec currently defines a single method
+ * (method {@code 0}) that is an adaptive filtering scheme with five basic
+ * filter types. Filtering is essential for optimal compression since it allows
+ * the deflate algorithm to exploit spatial similarities within the image.
+ * Therefore, MIDP devices must support all five filter types defined by filter
+ * method {@code 0}.</li>
+ * 
+ * <li>MIDP devices are required to read PNG images that are encoded with either
+ * interlace method {@code 0} (None) or interlace method {@code 1} (Adam7).
+ * Image loading in MIDP is synchronous and cannot be overlapped with image
+ * rendering, and so there is no advantage for an application to use interlace
+ * method {@code 1}. Support for decoding interlace images is required for
+ * compatibility with PNG and for the convenience of developers who may already
+ * have interlaced images available.</li>
+ * </ul>
+ * 
+ * <p>
+ * The PLTE chunk. Palatte-based images must be supported.
+ * </p>
+ * 
+ * <p>
+ * The IDAT chunk. Image data may be encoded using any of the {@code 5} filter
+ * types defined by filter method {@code 0} (None, Sub, Up, Average, Paeth).
+ * </p>
+ * 
+ * <p>
+ * The IEND chunk. this chunk must be found in order for the image to be
+ * considered valid.
  * </p>
  */
 public class Image {
