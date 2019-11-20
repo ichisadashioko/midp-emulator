@@ -1,3 +1,7 @@
+# What is going on?
+
+I am reading [MIDP specification](https://docs.oracle.com/javame/config/cldc/ref-impl/midp2.0/jsr118/index.html) and adding it for implementation reference.
+
 # References
 
 - [Mobile Information Device Profile](https://en.wikipedia.org/wiki/Mobile_Information_Device_Profile)
