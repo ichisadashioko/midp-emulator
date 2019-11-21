@@ -167,6 +167,55 @@ package javax.microedition.lcdui;
  * The IEND chunk. this chunk must be found in order for the image to be
  * considered valid.
  * </p>
+ * 
+ * <h4>Ancillary Chunks</h4>
+ * 
+ * <p>
+ * PNG defines several 'ancillary' chunks that may be present in a PNG image but
+ * are not critical for image decoding.
+ * </p>
+ * 
+ * <p>
+ * The tRNS chunk. All implementations must support the tRNS chunk. This chunk
+ * is used to implement transparency without providing alpha channel data for
+ * each pixel. For color types {@code 0} and {@code 2}, a particular gray or RGB
+ * value is defined to be a transparent pixel. In this case, the implementation
+ * must treat pixels with this value as fully transparent. Pixel value
+ * comparison must be based on the actual pixel values using the original sample
+ * depth; that is, this alpha values are potentially provided for each entry in
+ * the color palette. In this case, the implementation must treat pixels with an
+ * alpha value of {@code 0} as fully transparent, and it must treat pixels with
+ * an alpha value of {@code 255} as fully opaque. If rendering with alpha
+ * blending is supported, any pixels with intermediate alpha values must be
+ * carried through to the resulting image. If alpha blending is not supported,
+ * any pixels with intermediate alpha values must be replaced with fully
+ * transparent pixels.
+ * </p>
+ * 
+ * <p>
+ * The implementation <i>may</i> (but is not required to) support any of the
+ * other ancillary chunks. The implementation <i>must</i> silently ignore any
+ * unsupported ancillary chunks that it encounters. The currently defined
+ * optional ancillary chunks are:
+ * </p>
+ * 
+ * <pre>
+ * cHRM gAMA hIST iCCP iTXt pHYs
+ * sBIT sPLT sRGB tEXt tIME zTXt
+ * </pre>
+ * 
+ * <h3>Reference</h3>
+ * 
+ * <p>
+ * <i>PNG (Portable Network Graphics) Specification, Version 1.0.</i> W3C
+ * Recommendation, October 1, 1996. http://www.w3.org/TR/REC-png.html. Also
+ * available as RFC 2083, http://www.ietf.org/rfc/rfc2083.txt.
+ * </p>
+ * 
+ * <dl>
+ * <dt><b>Since:</b></dt>
+ * <dd>MIDP 1.0</dd>
+ * </dl>
  */
 public class Image {
 
