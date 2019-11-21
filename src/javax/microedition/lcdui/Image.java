@@ -212,10 +212,7 @@ package javax.microedition.lcdui;
  * available as RFC 2083, http://www.ietf.org/rfc/rfc2083.txt.
  * </p>
  * 
- * <dl>
- * <dt><b>Since:</b></dt>
- * <dd>MIDP 1.0</dd>
- * </dl>
+ * @since MIDP 1.0
  */
 public class Image {
 
@@ -278,10 +275,119 @@ public class Image {
         throw NotImplementedException();
     }
 
+    /**
+     * <p>
+     * Creates an immutable image which is decoded from the data stored in the
+     * specified byte array at the specified offset and length. The data must be in
+     * a self-identifying image file format supported by the implementation, such as
+     * PNG.
+     * </p>
+     * 
+     * <p>
+     * The {@code imageOffset} and {@code imageLength} parameters specify a range of
+     * data within the {@code imageData} byte array. The {@code imageOffset}
+     * parameter specifies the offset into the array of the first data byte to be
+     * used. It must therefore lie within the range
+     * {@code [0..(imageData.length-1)]}. The {@code imageLength} parameter
+     * specifies the number of data bytes to be used. It must be a positive integer
+     * and it must not cause the range to extend beyond the end of the array. That
+     * is, it must be true that
+     * {@code imageOffset + imageLength < imageData.length}.
+     * </p>
+     * 
+     * @param imageData   the array of image data in a supported image format
+     * @param imageOffset the offset of the start of the data in the array
+     * @param imageLength the length of the data in the array
+     * @return the created image
+     * @throws ArrayIndexOutOfBoundsException if {@code imageOffset} and
+     *                                        {@code imageLength} specify an invalid
+     *                                        range
+     * @throws NullPointerException           if {@code imageData} is {@code null}
+     * @throws IllegalArgumentException       if {@code imageData} is incorrectly
+     *                                        formatted or otherwise cannot be
+     *                                        decoded
+     */
     public static Image createImage(byte[] imageData, int imageOffset, int imageLength) {
         throw NotImplementedException();
     }
 
+    /**
+     * <p>
+     * Creates an immutable image using pixel data from the specified region of a
+     * source image, transformed as specified.
+     * </p>
+     * 
+     * <p>
+     * The source image may be mutable or immutable. For immutable source images,
+     * transparency information, if any, is copied to the new image unchanged.
+     * </p>
+     * 
+     * <p>
+     * On some devices, pre-transformed images may render more quickly than images
+     * that are transformed on the fly using {@code drawRegion}. However, creating
+     * such images does consume additional heap space, so this technique should be
+     * applied only to images whose rendering speed is critical.
+     * </p>
+     * 
+     * <p>
+     * The transform function used must be one of the following, as defined in the
+     * {@link Sprite} class:
+     * </p>
+     * 
+     * <ul>
+     * <li>{@code Sprite.TRANS_NONE} - causes the specified image region to be
+     * copied unchanged</li>
+     * <li>{@code Sprite.TRANS_ROT90} - cause the specified image region to be
+     * rotated clockwise by 90 degrees.</li>
+     * <li>{@code Sprite.TRANS_ROT180} - cause the specified image region to be
+     * rotated clockwise by 180 degrees.</li>
+     * <li>{@code Sprite.TRANS_ROT270} - cause the specified image region to be
+     * rotated clockwise by 270 degrees.</li>
+     * <li>{@code Sprite.TRANS_MIRROR} - cause the specified image region to be
+     * reflected about its vertical center.</li>
+     * <li>{@code Sprite.TRANS_MIRROR_ROT90} - cause the specified image region to
+     * be reflected about its vertical center and then rotated clockwise by 90
+     * degrees.</li>
+     * <li>{@code Sprite.TRANS_MIRROR_ROT180} - cause the specified image region to
+     * be reflected about its vertical center and then rotated clockwise by 180
+     * degrees.</li>
+     * <li>{@code Sprite.TRANS_MIRROR_ROT270} - cause the specified image region to
+     * be reflected about its vertical center and then rotated clockwise by 270
+     * degrees.</li>
+     * </ul>
+     * 
+     * <p>
+     * The size of the returned image will be the size of the specified region with
+     * the transform applied. For example, if the region is {@code 100 x 50} pixels
+     * and the transform is {@code TRANS_ROT90}, the returned image will be
+     * {@code 50 x 100} pixels.
+     * </p>
+     * 
+     * <p>
+     * <b>Note:</b> If all of the following conditions are met, this method may
+     * simply return the source {@code Image} without creating a new one:
+     * <ul>
+     * <li>the source image is immutable;</li>
+     * <li>the region represents the entire source image; and</li>
+     * <li>the transform is {@code TRANS_NONE}.</li>
+     * </ul>
+     * </p>
+     * 
+     * @param image     the source image to be copied from
+     * @param x         the horizontal location of the region to be copied
+     * @param y         the vertical location of the region to be copied
+     * @param width     the width of the region to be copied
+     * @param height    the height of the region to be copied
+     * @param transform the transform to be applied to the region
+     * @return the new, immutable image
+     * @throws NullPointerException     if {@code image} is {@code null}
+     * @throws IllegalArgumentException if the region to be copied exceeds the
+     *                                  bounds of the source image
+     * @throws IllegalArgumentException if either {@code width} or {@code height} is
+     *                                  zero or less
+     * @throws IllegalArgumentException if the {@code transform} is not valid
+     * @since MIDP 2.0
+     */
     public static Image createImage(Image image, int x, int y, int width, int height, int transform) {
         throw NotImplementedException();
     }
