@@ -219,4 +219,62 @@ package javax.microedition.lcdui;
  */
 public class Image {
 
+    /**
+     * Creates a new, mutable image for off-screen drawing. Every pixel within the
+     * newly created image is white. The width and height of the image must both be
+     * greater than zero.
+     * 
+     * @param width  the width of the new image, in pixels
+     * @param height the height of the new image, in pixels
+     * @return the created image
+     * @throws IllegalArgumentException if either {@code width} or {@code height} is
+     *                                  zero or less
+     */
+    public static Image createImage(int width, int height) {
+        throw NotImplementedException();
+    }
+
+    public static Image createImage(Image source) {
+        throw NotImplementedException();
+    }
+
+    public static Image createImage(String name) throws IOException {
+        throw NotImplementedException();
+    }
+
+    public static Image createImage(byte[] imageData, int imageOffset, int imageLength) {
+        throw NotImplementedException();
+    }
+
+    public static Image createImage(Image image, int x, int y, int width, int height, int transform) {
+        throw NotImplementedException();
+    }
+
+    public static Image createImage(InputStream stream) throws IOException {
+        throw NotImplementedException();
+    }
+
+    public static Image createRGBImage(int[] rgb, int width, int height, boolean processAlpha) {
+        throw NotImplementedException();
+    }
+
+    public Graphics getGraphics() {
+        throw NotImplementedException();
+    }
+
+    public int getWidth() {
+        throw NotImplementedException();
+    }
+
+    public int getHeight() {
+        throw NotImplementedException();
+    }
+
+    public boolean isMutable() {
+        throw NotImplementedException();
+    }
+
+    public void getRGB(int[] rgbData, int offset, int scanlength, int x, int y, int width, int height) {
+        throw NotImplementedException();
+    }
 }
