@@ -54,7 +54,7 @@ package javax.microedition.lcdui;
  * 
  * <p>
  * Every pixel within a mutable image is always fully opaque. Immutable images
- * may contain a comination of fully opaque pixels
+ * may contain a combination of fully opaque pixels
  * ({@code alpha = 2 ^ bitdepth - 1}), fully transparent pixels
  * ({@code alpha = 0}), and semitransparent pixels
  * ({@code 0 < alpha < 2 ^ bitdepth - 1}), where <i>bitdepth</i> is the number
@@ -110,12 +110,12 @@ package javax.microedition.lcdui;
  * <ul>
  * <li>All positive values of width and height are supported; however, a very
  * large image may not be readable because of memory constraints. The dimensions
- * of the resulting {@code Image} object must match the dimemsions of the PNG
+ * of the resulting {@code Image} object must match the dimensions of the PNG
  * image. That is, the values returned by {@code getWidth()} and
  * {@code getHeight()} and the rendered width and height must equal the width
  * and height specified in the IHDR chunk.</li>
  * 
- * <li>All color types are supported, althought the appearance of the image will
+ * <li>All color types are supported, although the appearance of the image will
  * be dependent on the capabilities of the device's screen. Color types that
  * include alpha channel data are supported.</li>
  * 
@@ -155,7 +155,7 @@ package javax.microedition.lcdui;
  * </ul>
  * 
  * <p>
- * The PLTE chunk. Palatte-based images must be supported.
+ * The PLTE chunk. Palette-based images must be supported.
  * </p>
  * 
  * <p>
@@ -234,10 +234,46 @@ public class Image {
         throw NotImplementedException();
     }
 
+    /**
+     * <p>
+     * Creates an immutable image from a source image. If the source image is
+     * mutable, an immutable copy is created and returned. If the source image is
+     * immutable, the implementation may simply return it without creating a new
+     * image. If an immutable source image contains transparency information, this
+     * information is copied to the new image unchanged.
+     * </p>
+     * 
+     * <p>
+     * This method is useful for placing the contents of mutable images into
+     * {@code Choice} objects. The application can create an off-screen image using
+     * the {@code createImage(w, h)} method, draw into it using a {@code Graphics}
+     * object obtained with the {@code getGraphics()} method, and then create an
+     * immutable copy of it with this method. The immutable copy may then be placed
+     * into {@code Choice} objects.
+     * </p>
+     * 
+     * @param source the source image to be copied
+     * @return the new, immutable image
+     * @throws NullPointerException if {@code source} is {@code null}
+     */
     public static Image createImage(Image source) {
         throw NotImplementedException();
     }
 
+    /**
+     * Creates an immutable image from decoded image data obtained from the named
+     * resource. The name parameter is a resource name as defined by
+     * {@code Class.getResourceAsStream(name)}. The rules for resolving resource
+     * names are defined in the Application Resource Files section of the
+     * {@code java.lang} package documentation.
+     * 
+     * @param name the name of the resource containing the image data in one of the
+     *             supported image formats
+     * @return the created image
+     * @throws NullPointerException if {@code name} is {@code null}
+     * @throws IOException          if the resource does not exist, the data cannot
+     *                              be loaded, or the image data cannot be decoded
+     */
     public static Image createImage(String name) throws IOException {
         throw NotImplementedException();
     }
