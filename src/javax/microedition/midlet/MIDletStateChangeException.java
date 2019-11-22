@@ -13,7 +13,7 @@ public class MIDletStateChangeException extends Exception {
      * Constructs an exception with no specified detail message.
      */
     public MIDletStateChangeException() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -22,6 +22,6 @@ public class MIDletStateChangeException extends Exception {
      * @param s the detail message
      */
     public MIDletStateChangeException(String s) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

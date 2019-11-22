@@ -211,7 +211,7 @@ public class Image {
      *                                  zero or less
      */
     public static Image createImage(int width, int height) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -235,7 +235,7 @@ public class Image {
      * @throws NullPointerException if {@code source} is {@code null}
      */
     public static Image createImage(Image source) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -253,7 +253,7 @@ public class Image {
      *                              be loaded, or the image data cannot be decoded
      */
     public static Image createImage(String name) throws IOException {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -287,7 +287,7 @@ public class Image {
      *                                        decoded
      */
     public static Image createImage(byte[] imageData, int imageOffset, int imageLength) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -362,7 +362,7 @@ public class Image {
      * @since MIDP 2.0
      */
     public static Image createImage(Image image, int x, int y, int width, int height, int transform) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -381,7 +381,7 @@ public class Image {
      * @since MIDP 2.0
      */
     public static Image createImage(InputStream stream) throws IOException {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -392,8 +392,8 @@ public class Image {
      * bottom. If {@code processAlpha} is {@code true}, the high-order byte
      * specifies opacity; that is, {@code 0x00RRGGBB} specifies a fully transparent
      * pixel and {@code 0xFFRRGGBB} specifies a fully opaque pixel. Intermediate
-     * alpha values specify semi-transparency. If the implementation does not support
-     * alpha blending for image rendering operations, it must replace any
+     * alpha values specify semi-transparency. If the implementation does not
+     * support alpha blending for image rendering operations, it must replace any
      * semitransparent pixels with fully transparent pixels. (See Alpha Processing
      * for further discussion.) If {code processAlpha} is {@code false}, the alpha
      * values are ignored and all pixels must be treated as fully opaque.
@@ -429,7 +429,7 @@ public class Image {
      * @since MIDP 2.0
      */
     public static Image createRGBImage(int[] rgb, int width, int height, boolean processAlpha) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -460,7 +460,7 @@ public class Image {
      * @throws IllegalStateException if the image is immutable
      */
     public Graphics getGraphics() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -470,7 +470,7 @@ public class Image {
      * @return width of the image
      */
     public int getWidth() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -480,7 +480,7 @@ public class Image {
      * @return height of the image
      */
     public int getHeight() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -491,7 +491,7 @@ public class Image {
      * @return {@code true} if the image is mutable, {@code false} otherwise
      */
     public boolean isMutable() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -578,6 +578,6 @@ public class Image {
      * @since MIDP 2.0
      */
     public void getRGB(int[] rgbData, int offset, int scanlength, int x, int y, int width, int height) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }

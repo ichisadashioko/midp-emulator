@@ -179,3 +179,5 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/osx,java,linux,windows,eclipse,visualstudiocode
 
 microemulator*
+.idea
+*.iml
