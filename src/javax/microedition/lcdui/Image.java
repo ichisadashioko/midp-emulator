@@ -9,7 +9,6 @@ package javax.microedition.lcdui;
  * method of a {@code Canvas}) or when an {@code Image} object is placed within
  * a {@code Form} screen or an {@code Alert} screen and the screen is made
  * current.
- * </p>
  * 
  * <p>
  * Images are either <i>mutable</i> or <i>immutable</i> depending upon how they
@@ -19,7 +18,6 @@ package javax.microedition.lcdui;
  * only while pixels. The application may render on a mutable image by calling
  * {@code getGraphics()} on the {@code Image} to obtain a {@code Graphics}
  * object expressly for this purpose.
- * </p>
  * 
  * <p>
  * {@code Image}s may be placed within {@code Alert}, {@code Choice},
@@ -34,13 +32,11 @@ package javax.microedition.lcdui;
  * modifies the contents of the image, the application must update the component
  * containing the image (for example, by calling {@code ImageItem.setImage}) in
  * order to make the modified contents visible.
- * </p>
  * 
  * <p>
  * An immutable image may be created from a mutable image through the use of the
  * {@code createImage} method. It is possible to create a mutable copy of an
  * immutable image using a technique similar to the following:
- * </p>
  * 
  * <pre>
  * Image source; // the image to be copied
@@ -59,7 +55,6 @@ package javax.microedition.lcdui;
  * ({@code alpha = 0}), and semitransparent pixels
  * ({@code 0 < alpha < 2 ^ bitdepth - 1}), where <i>bitdepth</i> is the number
  * of bits per sample in the source data.
- * </p>
  * 
  * <p>
  * Implementations must support storage, processing, and rendering of fully
@@ -68,7 +63,6 @@ package javax.microedition.lcdui;
  * data), a fully opaque pixel in the source data must always result in a fully
  * opaque pixel in the new image, and a fully transparent pixel in the source
  * data must always result in a fully transparent pixel in the new image.
- * </p>
  * 
  * <p>
  * The required treatment of semitransparent pixel data depends upon whether the
@@ -80,7 +74,6 @@ package javax.microedition.lcdui;
  * {@code Display.numAlphaLevels()} method.) If an implementation does not
  * support alpha blending, any semitransparent pixels in the source data must be
  * replaced with fully transparent pixels in the new image.
- * </p>
  * 
  * <h3>PNG Image Format</h3>
  * 
@@ -93,19 +86,16 @@ package javax.microedition.lcdui;
  * respect to handling of PNG images. Note that the requirements listed here
  * take precedence over any conflicting recommendations given in the <i>PNG
  * Specification</i>.
- * </p>
  * 
  * <h4>Critical Chunks</h4>
  * 
  * <p>
  * All of the 'critical' chunks specified by PNG must be supported. The
  * paragraphs below describe these critical chunks.
- * </p>
  * 
  * <p>
  * The IHDR chunk. MIDP devices must handle the following values in the IHDR
  * chunk:
- * </p>
  * 
  * <ul>
  * <li>All positive values of width and height are supported; however, a very
@@ -113,11 +103,11 @@ package javax.microedition.lcdui;
  * of the resulting {@code Image} object must match the dimensions of the PNG
  * image. That is, the values returned by {@code getWidth()} and
  * {@code getHeight()} and the rendered width and height must equal the width
- * and height specified in the IHDR chunk.</li>
+ * and height specified in the IHDR chunk.
  * 
  * <li>All color types are supported, although the appearance of the image will
  * be dependent on the capabilities of the device's screen. Color types that
- * include alpha channel data are supported.</li>
+ * include alpha channel data are supported.
  * 
  * <li>For color types {@code 4} & {@code 6} (grayscale with alpha and RGB width
  * alpha, respectively) the alpha channel must be decoded. Any pixels with an
@@ -127,15 +117,15 @@ package javax.microedition.lcdui;
  * opaque. If rendering with alpha blending is supported, any pixels with
  * intermediate alpha values must be carried through to the resulting image. If
  * alpha blending is not supported, any pixels with intermediate alpha values
- * must be replaced with fully transparent pixels.</li>
+ * must be replaced with fully transparent pixels.
  * 
- * <li>All bit depth values for the given color type are supported.</li>
+ * <li>All bit depth values for the given color type are supported.
  * <li>Compression method {@code 0} (deflate) is the only supported compression
  * method. This method utilizes the "zlib" compression scheme, which is also
  * used for jar files; thus, the decompression (inflate) code may be shared
  * between the jar decoding and PNG decoding implementations. As noted in the
  * PNG specification, the compressed data stream may comprised internally of
- * both compressed and uncompressed (raw) data.</li>
+ * both compressed and uncompressed (raw) data.
  * 
  * <li>The filter method represents a series of encoding schemes that may be
  * used to optimize compression. The PNG spec currently defines a single method
@@ -143,7 +133,7 @@ package javax.microedition.lcdui;
  * filter types. Filtering is essential for optimal compression since it allows
  * the deflate algorithm to exploit spatial similarities within the image.
  * Therefore, MIDP devices must support all five filter types defined by filter
- * method {@code 0}.</li>
+ * method {@code 0}.
  * 
  * <li>MIDP devices are required to read PNG images that are encoded with either
  * interlace method {@code 0} (None) or interlace method {@code 1} (Adam7).
@@ -151,29 +141,25 @@ package javax.microedition.lcdui;
  * rendering, and so there is no advantage for an application to use interlace
  * method {@code 1}. Support for decoding interlace images is required for
  * compatibility with PNG and for the convenience of developers who may already
- * have interlaced images available.</li>
+ * have interlaced images available.
  * </ul>
  * 
  * <p>
  * The PLTE chunk. Palette-based images must be supported.
- * </p>
  * 
  * <p>
  * The IDAT chunk. Image data may be encoded using any of the {@code 5} filter
  * types defined by filter method {@code 0} (None, Sub, Up, Average, Paeth).
- * </p>
  * 
  * <p>
  * The IEND chunk. this chunk must be found in order for the image to be
  * considered valid.
- * </p>
  * 
  * <h4>Ancillary Chunks</h4>
  * 
  * <p>
  * PNG defines several 'ancillary' chunks that may be present in a PNG image but
  * are not critical for image decoding.
- * </p>
  * 
  * <p>
  * The tRNS chunk. All implementations must support the tRNS chunk. This chunk
@@ -190,14 +176,12 @@ package javax.microedition.lcdui;
  * carried through to the resulting image. If alpha blending is not supported,
  * any pixels with intermediate alpha values must be replaced with fully
  * transparent pixels.
- * </p>
  * 
  * <p>
  * The implementation <i>may</i> (but is not required to) support any of the
  * other ancillary chunks. The implementation <i>must</i> silently ignore any
  * unsupported ancillary chunks that it encounters. The currently defined
  * optional ancillary chunks are:
- * </p>
  * 
  * <pre>
  * cHRM gAMA hIST iCCP iTXt pHYs
@@ -210,7 +194,6 @@ package javax.microedition.lcdui;
  * <i>PNG (Portable Network Graphics) Specification, Version 1.0.</i> W3C
  * Recommendation, October 1, 1996. http://www.w3.org/TR/REC-png.html. Also
  * available as RFC 2083, http://www.ietf.org/rfc/rfc2083.txt.
- * </p>
  * 
  * @since MIDP 1.0
  */
@@ -238,7 +221,6 @@ public class Image {
      * immutable, the implementation may simply return it without creating a new
      * image. If an immutable source image contains transparency information, this
      * information is copied to the new image unchanged.
-     * </p>
      * 
      * <p>
      * This method is useful for placing the contents of mutable images into
@@ -247,7 +229,6 @@ public class Image {
      * object obtained with the {@code getGraphics()} method, and then create an
      * immutable copy of it with this method. The immutable copy may then be placed
      * into {@code Choice} objects.
-     * </p>
      * 
      * @param source the source image to be copied
      * @return the new, immutable image
@@ -281,7 +262,6 @@ public class Image {
      * specified byte array at the specified offset and length. The data must be in
      * a self-identifying image file format supported by the implementation, such as
      * PNG.
-     * </p>
      * 
      * <p>
      * The {@code imageOffset} and {@code imageLength} parameters specify a range of
@@ -293,7 +273,6 @@ public class Image {
      * and it must not cause the range to extend beyond the end of the array. That
      * is, it must be true that
      * {@code imageOffset + imageLength < imageData.length}.
-     * </p>
      * 
      * @param imageData   the array of image data in a supported image format
      * @param imageOffset the offset of the start of the data in the array
@@ -315,45 +294,41 @@ public class Image {
      * <p>
      * Creates an immutable image using pixel data from the specified region of a
      * source image, transformed as specified.
-     * </p>
      * 
      * <p>
      * The source image may be mutable or immutable. For immutable source images,
      * transparency information, if any, is copied to the new image unchanged.
-     * </p>
      * 
      * <p>
      * On some devices, pre-transformed images may render more quickly than images
      * that are transformed on the fly using {@code drawRegion}. However, creating
      * such images does consume additional heap space, so this technique should be
      * applied only to images whose rendering speed is critical.
-     * </p>
      * 
      * <p>
      * The transform function used must be one of the following, as defined in the
      * {@link Sprite} class:
-     * </p>
      * 
      * <ul>
      * <li>{@code Sprite.TRANS_NONE} - causes the specified image region to be
-     * copied unchanged</li>
+     * copied unchanged
      * <li>{@code Sprite.TRANS_ROT90} - cause the specified image region to be
-     * rotated clockwise by 90 degrees.</li>
+     * rotated clockwise by 90 degrees.
      * <li>{@code Sprite.TRANS_ROT180} - cause the specified image region to be
-     * rotated clockwise by 180 degrees.</li>
+     * rotated clockwise by 180 degrees.
      * <li>{@code Sprite.TRANS_ROT270} - cause the specified image region to be
-     * rotated clockwise by 270 degrees.</li>
+     * rotated clockwise by 270 degrees.
      * <li>{@code Sprite.TRANS_MIRROR} - cause the specified image region to be
-     * reflected about its vertical center.</li>
+     * reflected about its vertical center.
      * <li>{@code Sprite.TRANS_MIRROR_ROT90} - cause the specified image region to
      * be reflected about its vertical center and then rotated clockwise by 90
-     * degrees.</li>
+     * degrees.
      * <li>{@code Sprite.TRANS_MIRROR_ROT180} - cause the specified image region to
      * be reflected about its vertical center and then rotated clockwise by 180
-     * degrees.</li>
+     * degrees.
      * <li>{@code Sprite.TRANS_MIRROR_ROT270} - cause the specified image region to
      * be reflected about its vertical center and then rotated clockwise by 270
-     * degrees.</li>
+     * degrees.
      * </ul>
      * 
      * <p>
@@ -361,17 +336,15 @@ public class Image {
      * the transform applied. For example, if the region is {@code 100 x 50} pixels
      * and the transform is {@code TRANS_ROT90}, the returned image will be
      * {@code 50 x 100} pixels.
-     * </p>
      * 
      * <p>
      * <b>Note:</b> If all of the following conditions are met, this method may
      * simply return the source {@code Image} without creating a new one:
      * <ul>
-     * <li>the source image is immutable;</li>
-     * <li>the region represents the entire source image; and</li>
-     * <li>the transform is {@code TRANS_NONE}.</li>
+     * <li>the source image is immutable;
+     * <li>the region represents the entire source image; and
+     * <li>the transform is {@code TRANS_NONE}.
      * </ul>
-     * </p>
      * 
      * @param image     the source image to be copied from
      * @param x         the horizontal location of the region to be copied
@@ -424,14 +397,12 @@ public class Image {
      * semitransparent pixels with fully transparent pixels. (See Alpha Processing
      * for further discussion.) If {code processAlpha} is {@code false}, the alpha
      * values are ignored and all pixels must be treated as fully opaque.
-     * </p>
      * 
      * <p>
      * Consider {@code P(a, b)} to be the value of the pixel located at column
      * {@code a} and row {@code b} of the Image, where rows and columns are numbered
      * downward from the top starting at zero, and columns are numbered rightward
      * from the left starting at zero. This operation can then be defined as:
-     * </p>
      * 
      * <pre>
      * P(a, b) = rgb[a + b * width];
@@ -461,6 +432,32 @@ public class Image {
         throw new NotImplementedException();
     }
 
+    /**
+     * <p>
+     * Creates a new {@code Graphics} object that renders to this image. This image
+     * must be mutable; it is illegal to call this on an immutable image. The
+     * mutability of an image may be tested with the {@code isMutable()} method.
+     * 
+     * <p>
+     * The newly created {@code Graphics} object has the following properties
+     * 
+     * <ul>
+     * <li>the destination is this {@code Image} object;
+     * <li>the clip region encompasses the entire {@code Image};
+     * <li>the current color is black;
+     * <li>the font is the same as the font returned by
+     * {@code Font.getDefaultFont()};
+     * <li>the stroke style is {@code SOLID}; and
+     * <li>the origin of the coordinate system is located at the upper-left corner
+     * of the {@code Image}.
+     * </ul>
+     * 
+     * <p>
+     * The lifetime of {@code Graphics} objects created using this method is
+     * indefinite. They may be used at any time, by any thread.
+     * 
+     * @return
+     */
     public Graphics getGraphics() {
         throw new NotImplementedException();
     }
