@@ -228,7 +228,7 @@ public class Image {
      *                                  zero or less
      */
     public static Image createImage(int width, int height) {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     /**
@@ -254,7 +254,7 @@ public class Image {
      * @throws NullPointerException if {@code source} is {@code null}
      */
     public static Image createImage(Image source) {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     /**
@@ -272,7 +272,7 @@ public class Image {
      *                              be loaded, or the image data cannot be decoded
      */
     public static Image createImage(String name) throws IOException {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     /**
@@ -308,7 +308,7 @@ public class Image {
      *                                        decoded
      */
     public static Image createImage(byte[] imageData, int imageOffset, int imageLength) {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     /**
@@ -389,34 +389,95 @@ public class Image {
      * @since MIDP 2.0
      */
     public static Image createImage(Image image, int x, int y, int width, int height, int transform) {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
+    /**
+     * Creates an immutable image from decoded image data obtained from an
+     * {@code InputStream}. This method blocks until all image data has been read
+     * and decoded. After this method completes (whether by returning or by throwing
+     * an exception) the stream is left open and its current position is undefined.
+     * 
+     * @param stream the name of the resource containing the image data in one of
+     *               the supported image formats
+     * @return the created image
+     * @throws NullPointerException if {@code stream} is {@code null}
+     * @throws IOException          if an I/O error occurs, if the image data cannot
+     *                              be loaded, or if the image data cannot be
+     *                              decoded
+     * @since MIDP 2.0
+     */
     public static Image createImage(InputStream stream) throws IOException {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
+    /**
+     * <p>
+     * Creates an immutable image from a sequence of ARGB values, specified as
+     * {@code 0xAARRGGBB}. The ARGB data within the {@code rgb} array is arranged
+     * horizontally from left to right within each row, row by row from top to
+     * bottom. If {@code processAlpha} is {@code true}, the high-order byte
+     * specifies opacity; that is, {@code 0x00RRGGBB} specifies a fully transparent
+     * pixel and {@code 0xFFRRGGBB} specifies a fully opaque pixel. Intermediate
+     * alpha values specify semitransparency. If the implementation does not support
+     * alpha blending for image rendering operations, it must replace any
+     * semitransparent pixels with fully transparent pixels. (See Alpha Processing
+     * for further discussion.) If {code processAlpha} is {@code false}, the alpha
+     * values are ignored and all pixels must be treated as fully opaque.
+     * </p>
+     * 
+     * <p>
+     * Consider {@code P(a, b)} to be the value of the pixel located at column
+     * {@code a} and row {@code b} of the Image, where rows and columns are numbered
+     * downward from the top starting at zero, and columns are numbered rightward
+     * from the left starting at zero. This operation can then be defined as:
+     * </p>
+     * 
+     * <pre>
+     * P(a, b) = rgb[a + b * width];
+     * </pre>
+     * 
+     * for
+     * 
+     * <pre>
+     * 0 <= a < width
+     * 0 <= b < height
+     * </pre>
+     * 
+     * @param rgb          an array of ARGB values that composes the image
+     * @param width        the width of the image
+     * @param height       the height of the image
+     * @param processAlpha {@code true} if {@code rgb} has an alpha channel,
+     *                     {@code false} if all pixels are fully opaque
+     * @return the created image
+     * @throws NullPointerException           if {@code rgb} is {@code null}
+     * @throws IllegalArgumentException       if either {@code width} or
+     *                                        {@code height} is zero or less
+     * @throws ArrayIndexOutOfBoundsException if the length of {@code rgb} is less
+     *                                        than {@code width * height}
+     * @since MIDP 2.0
+     */
     public static Image createRGBImage(int[] rgb, int width, int height, boolean processAlpha) {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public Graphics getGraphics() {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public int getWidth() {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public int getHeight() {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public boolean isMutable() {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void getRGB(int[] rgbData, int offset, int scanlength, int x, int y, int width, int height) {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 }
