@@ -70,7 +70,7 @@ package javax.microedition.lcdui;
  * implementation supports alpha bending, a semitransparent pixel in the source
  * data must result in a semitransparent pixel in the new image. The resulting
  * alpha value may be modified to accommodate the number of levels
- * semitransparency supported by the platform. (See the
+ * semi-transparency supported by the platform. (See the
  * {@code Display.numAlphaLevels()} method.) If an implementation does not
  * support alpha blending, any semitransparent pixels in the source data must be
  * replaced with fully transparent pixels in the new image.
@@ -392,7 +392,7 @@ public class Image {
      * bottom. If {@code processAlpha} is {@code true}, the high-order byte
      * specifies opacity; that is, {@code 0x00RRGGBB} specifies a fully transparent
      * pixel and {@code 0xFFRRGGBB} specifies a fully opaque pixel. Intermediate
-     * alpha values specify semitransparency. If the implementation does not support
+     * alpha values specify semi-transparency. If the implementation does not support
      * alpha blending for image rendering operations, it must replace any
      * semitransparent pixels with fully transparent pixels. (See Alpha Processing
      * for further discussion.) If {code processAlpha} is {@code false}, the alpha
@@ -456,24 +456,127 @@ public class Image {
      * The lifetime of {@code Graphics} objects created using this method is
      * indefinite. They may be used at any time, by any thread.
      * 
-     * @return
+     * @return a {@code Graphics} object with this image as its destination
+     * @throws IllegalStateException if the image is immutable
      */
     public Graphics getGraphics() {
         throw new NotImplementedException();
     }
 
+    /**
+     * Gets the width of the image in pixels. The value returned must reflect the
+     * actual with of the image when rendered.
+     * 
+     * @return width of the image
+     */
     public int getWidth() {
         throw new NotImplementedException();
     }
 
+    /**
+     * Gets the height of the image in pixels. The value returned must reflect the
+     * actual height of the image when rendered.
+     * 
+     * @return height of the image
+     */
     public int getHeight() {
         throw new NotImplementedException();
     }
 
+    /**
+     * Check if this image is mutable. Mutable images can be modified by rendering
+     * to them through a {@code Graphics} object obtained from the
+     * {@code getGraphics()} method of this object.
+     * 
+     * @return {@code true} if the image is mutable, {@code false} otherwise
+     */
     public boolean isMutable() {
         throw new NotImplementedException();
     }
 
+    /**
+     * <p>
+     * Obtains ARGB pixel data from the specified region of this image and stores it
+     * in the provided array of integers. Each pixel value is stored in
+     * {@code 0xAARRGGBB} format, where the high-order byte contains the alpha
+     * channel and the remaining bytes contain color components for red, green and
+     * blue, respectively. The alpha channel specifies the opacity of the pixel,
+     * where a value of {@code 0x00} represents a pixel that is fully transparent
+     * and a value of {@code 0xFF} represents a fully opaque pixel.
+     * 
+     * <p>
+     * The returned values are not guaranteed to be identical to values from the
+     * original source, such as from {@code createRGBImage} or from a PNG image.
+     * Color values may be re-sampled to reflect the display capabilities of the
+     * device (for example, red, green or blue pixels may all be represented by the
+     * same gray value on a grayscale device). On devices that do not support alpha
+     * blending, the alpha value will be {@code 0xFF} for opaque pixels and
+     * {@code 0x00} for all other pixels. On devices that support alpha blending,
+     * alpha channel values may be re-sampled to reflect the number of levels of
+     * semi-transparency supported.
+     * 
+     * <p>
+     * The {@code scanlength} specifies the relative offset within the array between
+     * the corresponding pixels of consecutive rows. In order to prevent rows of
+     * stored pixels from overlapping, the absolute value of {@code scanlength} must
+     * be greater than or equal to {@code width}. Negative values of
+     * {@code scanlength} are allowed. In all cases, this must result in every
+     * reference being within the bounds of the {@code rgbData} array.
+     * 
+     * <p>
+     * Consider {@code P(a,b)} to be the value of the pixel located at column
+     * {@code a} and row {@code b} of the Image, where rows and columns are numbered
+     * downward from the top starting at zero, and columns are numbered rightward
+     * from the left starting at zero. This operation can then be defined as:
+     * 
+     * <pre>
+     * rgbData[offset + (a - x) + (b - y) * scanlength] = P(a, b);
+     * </pre>
+     * 
+     * for
+     * 
+     * <pre>
+     * x <= a < x + width
+     * y <= b < y + height
+     * </pre>
+     * 
+     * The source rectangle is required to not exceed the bounds of the image. This
+     * means:
+     * 
+     * <pre>
+     * x >= 0
+     * y >= 0
+     * x + width <= image width
+     * y + height < image height
+     * </pre>
+     * 
+     * <p>
+     * If any of these conditions is not met, an {@code IllegalArgumentException} is
+     * thrown. Otherwise, in cases where {@code width <= 0} or {@code height <= 0},
+     * no exception is thrown, and no pixel data is copied to {@code rgbData}.
+     * 
+     * @param rgbData    an array of integers in which the ARGB pixel data is stored
+     * @param offset     the index into the array where the first ARGB value is
+     *                   stored
+     * @param scanlength the relative offset in the array between corresponding
+     *                   pixels in consecutive rows of the region
+     * @param x          the x-coordinate of the upper left corner of the region
+     * @param y          the y-coordinate of the upper left corner of the region
+     * @param width      the width of the region
+     * @param height     the height of the region
+     * @throws ArrayIndexOutOfBoundsException if the requested operation would
+     *                                        attempt to access an element in the
+     *                                        {@code rgbData} array whose index is
+     *                                        either negative or beyond its length
+     *                                        (the contents of array are unchanged)
+     * @throws IllegalArgumentException       if the area being retrieved exceeds
+     *                                        the bounds of the source image
+     * @throws IllegalArgumentException       if the absolute value of
+     *                                        {@code scanlength} is less than
+     *                                        {@code width}
+     * @throws NullPointerException           if {@code rgbData} is {@code null}
+     * @since MIDP 2.0
+     */
     public void getRGB(int[] rgbData, int offset, int scanlength, int x, int y, int width, int height) {
         throw new NotImplementedException();
     }
