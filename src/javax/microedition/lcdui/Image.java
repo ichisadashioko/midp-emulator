@@ -1,5 +1,8 @@
 package javax.microedition.lcdui;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * <p>
  * The {@code Image} class is used to hold graphical image data. {@code Image}
