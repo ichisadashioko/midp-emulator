@@ -182,3 +182,5 @@ microemulator*
 .idea
 *.iml
 *.html
+
+.gradle
