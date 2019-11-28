@@ -103,13 +103,79 @@ public interface DatagramConnection extends Connection {
      */
     public void send(Datagram dgram) throws IOException;
 
+    /**
+     * <p>
+     * Receive a datagram. When this method returns, the internal buffer in the
+     * {@code Datagram} object is filled with the data received, starting at the
+     * location determined by the {@code offset} state variable, and the data is
+     * ready to be read using the methods of the {@code DataInput} interface.
+     * 
+     * <p>
+     * This method blocks until a datagram is received. The internal {@code length}
+     * state variable in the {@code Datagram} object contains the length of the
+     * received datagram. If the received data is longer than the length of the
+     * internal buffer minus offset, data is truncated.
+     * 
+     * <p>
+     * This method does not change the internal <i>read/write state</i> variable of
+     * the {@code Datagram} object. Use method {@code Datagram.reset} to change the
+     * pointer before reading if necessary.
+     * 
+     * @param dgram A datagram
+     * @throws IOException            If an I/O error occurs.
+     * @throws InterruptedIOException Timeout or interrupt occurred.
+     */
     public void receive(Datagram dgram) throws IOException;
 
+    /**
+     * Create a new datagram object.
+     * 
+     * @param size The size of the buffer needed for the datagram
+     * @return A new datagram
+     * @throws IOException              If an I/O error occurs.
+     * @throws IllegalArgumentException if the size is negative or larger than the
+     *                                  maximum size
+     */
     public Datagram newDatagram(int size) throws IOException;
 
+    /**
+     * Create a new datagram object.
+     * 
+     * @param size The size of the buffer needed for the datagram
+     * @param addr The I/O address to which the datagram will be sent
+     * @return A new datagram
+     * @throws IOException              If an I/O error occurs.
+     * @throws IllegalArgumentException if the size is negative or larger than the
+     *                                  maximum size, or if the address parameter is
+     *                                  invalid
+     */
     public Datagram newDatagram(int size, String addr) throws IOException;
 
+    /**
+     * Create a new datagram object.
+     * 
+     * @param buf  The buffer to be used for the datagram
+     * @param size The size of the buffer needed for the datagram
+     * @return A new datagram
+     * @throws IOException              If an I/O error occurs.
+     * @throws IllegalArgumentException if the size is negative or larger than the
+     *                                  maximum size or the given buffer's length,
+     *                                  or if the buffer parameter is invalid
+     */
     public Datagram newDatagram(byte[] buf, int size) throws IOException;
 
+    /**
+     * Make a new datagram object.
+     * 
+     * @param buff The buffer to be used for the datagram
+     * @param size The size of the buffer needed for the datagram
+     * @param addr The I/O address to which the datagram will be sent
+     * @return A new datagram
+     * @throws IOException              If an I/O error occurs.
+     * @throws IllegalArgumentException if the size is negative or larger than the
+     *                                  maximum size or the given buffer's length,
+     *                                  or if the address or buffer parameter is
+     *                                  invalid
+     */
     public Datagram newDatagram(byte[] buff, int size, String addr) throws IOException;
 }
