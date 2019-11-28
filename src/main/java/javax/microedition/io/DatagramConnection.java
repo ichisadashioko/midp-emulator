@@ -98,8 +98,8 @@ public interface DatagramConnection extends Connection {
      * internal state variables of the {@code Datagram} object.
      * 
      * @param dgram A datagram
-     * @throws IOException            If an I/O errro occurs.
-     * @throws InterruptedIOException Timeout or interrupt occured.
+     * @throws IOException            If an I/O error occurs.
+     * @throws InterruptedIOException Timeout or interrupt occurred.
      */
     public void send(Datagram dgram) throws IOException;
 
