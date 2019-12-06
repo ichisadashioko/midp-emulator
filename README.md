@@ -1,3 +1,14 @@
+# Java 2 Micro Edition (emulator)
+
+There are some JSRs related to implement the emulator.
+
+- CLDC 1.0 ([JSR 30](https://jcp.org/en/jsr/detail?id=30))
+- CLDC 1.1 ([JSR 139](https://jcp.org/en/jsr/detail?id=139))
+- MIDP 1.0 ([JSR 37](https://jcp.org/en/jsr/detail?id=37))
+- MIDP 2.0 ([JSR 118](https://jcp.org/en/jsr/detail?id=118))
+- Mobile 3D Graphics API for J2ME ([JSR 184](https://jcp.org/en/jsr/detail?id=184))
+- MIDP 3.0 ([JSR 271](https://jcp.org/en/jsr/detail?id=271))
+
 # What is going on?
 
 I am reading [MIDP 2.x - JSR118](https://docs.oracle.com/javame/config/cldc/ref-impl/midp2.0/jsr118/index.html) and adding it for implementation reference.
