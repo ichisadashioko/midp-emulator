@@ -1,6 +1,6 @@
 # Java 2 Micro Edition (emulator)
 
-There are some JSRs related to implement the emulator.
+There are some JSRs relevant to the MIDP platform.
 
 - CLDC 1.0 ([JSR 30](https://jcp.org/en/jsr/detail?id=30))
 - CLDC 1.1 ([JSR 139](https://jcp.org/en/jsr/detail?id=139))
