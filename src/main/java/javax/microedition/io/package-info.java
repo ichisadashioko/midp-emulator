@@ -50,6 +50,8 @@
  * 
  * <h2>HTTP Network Connection</h2>
  * 
+ * <img src="./MIDP_Networking-4.gif"/>
+ * 
  * <p>
  * The <i>GenericConnection</i> framework from the CLDC provides the base stream
  * and content interfaces. The interface <i>HttpConnection</i> provides the
