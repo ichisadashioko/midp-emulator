@@ -51,22 +51,22 @@ __Classes__
 
 __Interfaces__
 
-- [ ] [`RecordComparator`](./src/main/java/javax/microedition/lcdui/game/RecordComparator.java)
-- [ ] [`RecordEnumeration`](./src/main/java/javax/microedition/lcdui/game/RecordEnumeration.java)
-- [ ] [`RecordFilter`](./src/main/java/javax/microedition/lcdui/game/RecordFilter.java)
-- [ ] [`RecordListener`](./src/main/java/javax/microedition/lcdui/game/RecordListener.java)
+- [ ] [`RecordComparator`](./src/main/java/javax/microedition/rms/RecordComparator.java)
+- [ ] [`RecordEnumeration`](./src/main/java/javax/microedition/rms/RecordEnumeration.java)
+- [ ] [`RecordFilter`](./src/main/java/javax/microedition/rms/RecordFilter.java)
+- [ ] [`RecordListener`](./src/main/java/javax/microedition/rms/RecordListener.java)
 
 __Classes__
 
-- [ ] [`RecordStore`](./src/main/java/javax/microedition/lcdui/game/RecordStore.java)
+- [ ] [`RecordStore`](./src/main/java/javax/microedition/rms/RecordStore.java)
 
 __Exceptions__
 
-- [ ] [`InvalidRecordIDException`](./src/main/java/javax/microedition/lcdui/game/InvalidRecordIDException.java)
-- [ ] [`RecordStoreException`](./src/main/java/javax/microedition/lcdui/game/RecordStoreException.java)
-- [ ] [`RecordStoreFullException`](./src/main/java/javax/microedition/lcdui/game/RecordStoreFullException.java)
-- [ ] [`RecordStoreNotFoundException`](./src/main/java/javax/microedition/lcdui/game/RecordStoreNotFoundException.java)
-- [ ] [`RecordStoreNotOpenException`](./src/main/java/javax/microedition/lcdui/game/RecordStoreNotOpenException.java)
+- [ ] [`InvalidRecordIDException`](./src/main/java/javax/microedition/rms/InvalidRecordIDException.java)
+- [ ] [`RecordStoreException`](./src/main/java/javax/microedition/rms/RecordStoreException.java)
+- [ ] [`RecordStoreFullException`](./src/main/java/javax/microedition/rms/RecordStoreFullException.java)
+- [ ] [`RecordStoreNotFoundException`](./src/main/java/javax/microedition/rms/RecordStoreNotFoundException.java)
+- [ ] [`RecordStoreNotOpenException`](./src/main/java/javax/microedition/rms/RecordStoreNotOpenException.java)
 
 ## Application Lifecycle Package
 
@@ -74,11 +74,11 @@ __Exceptions__
 
 __Classes__
 
-- [ ] [`MIDlet`](./src/main/java/javax/microedition/lcdui/game/MIDlet.java)
+- [ ] [`MIDlet`](./src/main/java/javax/microedition/midlet/MIDlet.java)
 
 __Exceptions__
 
-- [ ] [`MIDletStateChangeException`](./src/main/java/javax/microedition/lcdui/game/MIDletStateChangeException.java)
+- [ ] [`MIDletStateChangeException`](./src/main/java/javax/microedition/midlet/MIDletStateChangeException.java)
 
 ## Networking Package
 
@@ -135,8 +135,8 @@ __Exceptions__
 
 __Interfaces__
 
-- [ ] [`ToneControl`](./src/main/java/javax/microedition/lcdui/game/ToneControl.java)
-- [ ] [`VolumeControl`](./src/main/java/javax/microedition/lcdui/game/VolumeControl.java)
+- [ ] [`ToneControl`](./src/main/java/javax/microedition/media/control/ToneControl.java)
+- [ ] [`VolumeControl`](./src/main/java/javax/microedition/media/control/VolumeControl.java)
 
 ## Public Key Package
 
@@ -144,8 +144,8 @@ __Interfaces__
 
 __Interfaces__
 
-- [ ] [`Certificate`](./src/main/java/javax/microedition/lcdui/game/Certificate.java)
+- [ ] [`Certificate`](./src/main/java/javax/microedition/pki/Certificate.java)
 
 __Exceptions__
 
-- [ ] [`CertificateException`](./src/main/java/javax/microedition/lcdui/game/CertificateException.java)
+- [ ] [`CertificateException`](./src/main/java/javax/microedition/pki/CertificateException.java)
