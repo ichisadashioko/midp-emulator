@@ -55,56 +55,28 @@ package javax.microedition.io;
  * baudrate, which can be discovered using the {@code getBaudRate} method.
  * 
  * <h2>Optional Parameters</h2>
- * <table>
- * <thead>
- * <tr>
- * <th>Parameter</th>
- * <th>Default</th>
- * <th>Description</th>
- * </tr>
- * </thead> <tbody>
- * <tr>
- * <td><code>baudrate</code></td>
- * <td><code>platform dependent</code></td>
- * <td>The speed of the port.</td>
- * </tr>
- * <tr>
- * <td><code>bitsperchar</code></td>
- * <td><code>8</code></td>
- * <td>The number bits per character (<code>7</code> or <code>8</code>).</td>
- * </tr>
- * <tr>
- * <td><code>stopbits</code></td>
- * <td><code>1</td>
- * <td>Them number of stop bits per char (<code>1</code> or
- * <code>2</code>).</td>
- * </tr>
- * <tr>
- * <td><code>parity</code></td>
- * <td><code>none</code></td>
- * <td>The parity can be <code>odd</code>, <code>even</code>, or
- * <code>none</code>.</td>
- * </tr>
- * <tr>
- * <td><code>blocking</code></td>
- * <td><code>on</code></td>
- * <td>If <code>on</code>, wait for a full buffer when reading.</td>
- * </tr>
- * <tr>
- * <td><code>autocts</code></td>
- * <td><code>on</code></td>
- * <td>If <code>on</code>, wait for the CTS line to be on before writing.</td>
- * </tr>
- * <tr>
- * <td><code>autorts</code></td>
- * <td><code>on</code></td>
- * <td>If <code>on</code>, turn on the RTS line when the input buffer is not
- * full. If <code>off</code>, the RTS line is always on.</td>
- * </tr>
- * </tbody>
- * </table>
  * 
- * <h2>BNF Format for <code>Connector.open()</code> string</h2>
+ * <pre>
+ * ┌─────────────┬────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────┐
+ * | Parameter   | Default            | Description                                                                                   |
+ * ├─────────────┼────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+ * | baudrate    | platform dependent | The speed of the port.                                                                        |
+ * ├─────────────┼────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+ * | bitsperchar | 8                  | The number bits per character (7 or 8).                                                       |
+ * ├─────────────┼────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+ * | stopbits    | 1                  | The number of stop bits per char (1 or 2).                                                    |
+ * ├─────────────┼────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+ * | parity      | none               | The parity can be odd, even, or none.                                                         |
+ * ├─────────────┼────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+ * | blocking    | on                 | If on, wait for a full buffer when reading.                                                   |
+ * ├─────────────┼────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+ * | autocts     | on                 | If on, wait for the CTS line to be on before writing.                                         |
+ * ├─────────────┼────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+ * | autorts     | on                 | If on, turn on RTS line when the input buffer is not full. If off, the RTS line is always on. |
+ * └─────────────┴────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────┘
+ * </pre>
+ * 
+ * <h2>BNF Format for {@code Connector.open()} string</h2>
  * 
  * <p>
  * The URI must conform to the BNF syntax specified below. If the URL does not
@@ -144,7 +116,109 @@ package javax.microedition.io;
  * | <on_off>                 | ::= "on" | "off"                                                                                          |
  * └──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────┘
  * </pre>
+ * 
+ * <h2>Security</h2>
+ * 
+ * <p>
+ * Access to serial ports is restricted to prevent unauthorized transmission or
+ * reception of data. The security model applied to the serial port connection
+ * is defined in the implementing profile. The security model may be applied to
+ * the serial port connection is defined in the implementing profile. The
+ * security model may be applied on the invocation of the
+ * {@code Connector.open()} method with a valid serial port connection string.
+ * Should the application not be granted access to the serial port through the
+ * profile authorization scheme, a {@code java.lang.SecurityException} will be
+ * thrown from the {@code Connector.open()} method. The security model MAY also
+ * be applied during execution, specifically when the methods
+ * {@code openInputStream()}, {@code openDataInputStream()},
+ * {@code openOutputStream()}, and {@code openDataOutputStream()} are invoked.
+ * 
+ * <h2>Examples</h2>
+ * 
+ * <p>
+ * The following examples shows how a {@code CommConnection} would be used to
+ * access a simple loopback program.
+ * 
+ * <pre>
+ * CommConnection cc = (CommConnection) Connector.open("comm:com0;baudrate=19200");
+ * int baudrate = cc.getBaudRate();
+ * InputStream is = cc.openInputStream();
+ * OutputStream os = cc.openOutputStream();
+ * int ch = 0;
+ * while (ch != 'Z') {
+ *     os.write(ch);
+ *     ch = is.read();
+ *     ch++;
+ * }
+ * is.close();
+ * os.close();
+ * cc.close();
+ * </pre>
+ * 
+ * <p>
+ * The following example shows how a {@code CommConnection} would be used to
+ * discover available comm ports.
+ * 
+ * <pre>
+ * String port1;
+ * String port2 = System.getProperty("microedition.commports");
+ * int comma = ports.indexOf(',');
+ * if (comma > 0) {
+ *     // Parse the first port from the available ports list.
+ *     port1 = ports.substring(0, comma);
+ * } else {
+ *     // Only one serial port available.
+ *     port1 = ports;
+ * }
+ * </pre>
+ * 
+ * <h2>Recommended Port Naming Convention</h2>
+ * 
+ * <p>
+ * Logical port names can be defined to match platform naming conventions using
+ * any combination of alphanumeric characters. However, it is recommended that
+ * ports be named consistently among the implementations of this class according
+ * to a proposed convention. VM implementations should following convention:
+ * 
+ * <p>
+ * Port names contain a text abbreviation indicating ports capabilities followed
+ * by a sequential number for the port. The following device name types should
+ * be used:
+ * 
+ * <ul>
+ * <li>COM#, where COM is for RS-232 ports and # is a number assigned to the
+ * port
+ * <li>IR#, where IR is for IrDA IRCOMM ports and # is a number assigned to the
+ * port
+ * </ul>
+ * 
+ * <p>
+ * This naming scheme allows API users to generally determine the type of port
+ * that they would like to use. For instance, if a application desires to "beam"
+ * a piece of data, the app could look for "IR#" ports for opening the
+ * connection. The alternative is a trial and error approach with all available
+ * ports.
+ * 
+ * @since MIDP 2.0
  */
 public interface CommConnection extends StreamConnection {
+    /**
+     * Gets the baudrate for the serial port connection.
+     * 
+     * @return the baudrate of the connection
+     * @see #setBaudRate(int)
+     */
+    public int getBaudRate();
 
+    /**
+     * Sets the baudrate for the serial port connection. If the requested
+     * {@code baudrate} is not supported on the platform, then the system MAY use an
+     * alternate valid setting. The alternate value can be accessed using the
+     * {@code getBaudRate} method.
+     * 
+     * @param baudrate the baudrate for the connection
+     * @return the previous baudrate of the connection
+     * @see #getBaudRate()
+     */
+    public int setBaudRate(int baudrate);
 }
