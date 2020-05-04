@@ -29,26 +29,17 @@ import java.io.IOException;
  * The URI must conform to the BNF syntax specified below. If the URI does not
  * conform to this syntax, an {@code IllegalArgumentException} is thrown.
  * 
- * <table>
- * <tbody>
- * <tr>
- * <td>&lt;datagram_connection_string&gt;</td>
- * <td>::= "datagram://" | "datagram://"&lt;hostport%gt;</td>
- * </tr>
- * <tr>
- * <td>&lt;hostport&gt;</td>
- * <td>::= host ":" port</td>
- * </tr>
- * <tr>
- * <td>&lt;host&gt;</td>
- * <td>::= host name or IP address (omitted for inbound connections)</td>
- * </tr>
- * <tr>
- * <td>&lt;port&gt;</td>
- * <td>::= numeric port number (omitted for system assigned port)</td>
- * </tr>
- * </tbody>
- * </table>
+ * <pre>
+ * ┌──────────────────────────────┬───────────────────────────────────────────────────────────────┐
+ * | <datagram_connection_string> | ::= "datagram://" | "datagram://"<hostport>                   |
+ * ├──────────────────────────────┼───────────────────────────────────────────────────────────────┤
+ * | <hostport>                   | ::= host ":" port                                             |
+ * ├──────────────────────────────┼───────────────────────────────────────────────────────────────┤
+ * | <host>                       | ::= host name or IP address (omitted for inbound connections) |
+ * ├──────────────────────────────┼───────────────────────────────────────────────────────────────┤
+ * | <port>                       | ::= numeric port number (omitted for system assigned port)    |
+ * └──────────────────────────────┴───────────────────────────────────────────────────────────────┘
+ * </pre>
  * 
  * @since MIDP 2.0
  */
