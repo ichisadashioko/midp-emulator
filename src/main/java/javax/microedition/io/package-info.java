@@ -136,30 +136,20 @@
  * <h2>System Properties Used for User-Agent and Accept-Language Request
  * Headers</h2>
  * 
- * <table>
- * <thead>
- * <tr>
- * <th>System Property</th>
- * <th>Description</th>
- * </tr>
- * </thead> <tbody>
- * <tr>
- * <td>microedition.profiles</td>
- * <td>A blank (Unicode U+0020) separated list of the J2ME profiles that this
- * device supports. For MIDP 2.0 devices, this property MUST contain at least
- * "MIDP-2.0".</td>
- * </tr>
- * <tr>
- * <td>microedition.configuration</td>
- * <td>The J2ME configuration supported by this device. For example,
- * "CLDC-1.0".</td>
- * </tr>
- * <tr>
- * <td>microedition.locale</td>
- * <td>The name of the current locale on this device. For example, "en-US".</td>
- * </tr>
- * </tbody>
- * </table>
+ * <pre>
+ * ┌────────────────────────────┬─────────────────────────────────────────────────────────────────────────────────────────┐
+ * | System Property            | Description                                                                             |
+ * ├────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────┤
+ * | microedition.profiles      | A blank (Unicode U+0020) separated list of the J2ME profiles that this device supports. |
+ * |                            | For MIDP 2.0 devices, this property MUST contain at least "MIDP-2.0".                   |
+ * ├────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────┤
+ * | microedition.configuration | The J2ME configuration supported by this device.                                        |
+ * |                            | For example, "CLDC-1.0".                                                                |
+ * ├────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────┤
+ * | microedition.locale        | The name of the current locale on this device.                                          |
+ * |                            | For example, "en-US".                                                                   |
+ * └────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────┘
+ * </pre>
  * 
  * <h2>HTTP Request Header Example</h2>
  * 
@@ -305,44 +295,27 @@
  * table below defines the corresponding permissions for the protocols defined
  * within this specification.
  * 
- * <table>
- * <thead>
- * <th>Permission</th>
- * <th>Protocol</th> </thead> <tbody>
- * <tr>
- * <td>{@code javax.microedition.io.Connector.http}</td>
- * <td>{@code http}</td>
- * </tr>
- * <tr>
- * <td>{@code javax.microedition.io.Connector.https}</td>
- * <td>{@code https}</td>
- * </tr>
- * <tr>
- * <td>{@code javax.microedition.io.Connector.datagram}</td>
- * <td>{@code datagram}</td>
- * </tr>
- * <tr>
- * <td>{@code javax.microedition.io.Connector.datagramreceive}</td>
- * <td>{@code datagram server (without host)}</td>
- * </tr>
- * <tr>
- * <td>{@code javax.microedition.io.Connector.socket}</td>
- * <td>{@code socket}</td>
- * </tr>
- * <tr>
- * <td>{@code javax.microedition.io.Connector.serversocket}</td>
- * <td>{@code server socket (without host)}</td>
- * </tr>
- * <tr>
- * <td>{@code javax.microedition.io.Connector.ssl}</td>
- * <td>{@code ssl}</td>
- * </tr>
- * <tr>
- * <td>{@code javax.microedition.io.Connector.comm}</td>
- * <td>{@code comm}</td>
- * </tr>
- * </tbody>
- * </table>
+ * <pre>
+ * ┌─────────────────────────────────────────────────┬────────────────────────────────┐
+ * | Permission                                      | Protocol                       |
+ * ├─────────────────────────────────────────────────┼────────────────────────────────┤
+ * | javax.microedition.io.Connector.http            | http                           |
+ * ├─────────────────────────────────────────────────┼────────────────────────────────┤
+ * | javax.microedition.io.Connector.https           | https                          |
+ * ├─────────────────────────────────────────────────┼────────────────────────────────┤
+ * | javax.microedition.io.Connector.datagram        | datagram                       |
+ * ├─────────────────────────────────────────────────┼────────────────────────────────┤
+ * | javax.microedition.io.Connector.datagramreceive | datagram server (without host) |
+ * ├─────────────────────────────────────────────────┼────────────────────────────────┤
+ * | javax.microedition.io.Connector.socket          | socket                         |
+ * ├─────────────────────────────────────────────────┼────────────────────────────────┤
+ * | javax.microedition.io.Connector.serversocket    | server socket (without host)   |
+ * ├─────────────────────────────────────────────────┼────────────────────────────────┤
+ * | javax.microedition.io.Connector.ssl             | ssl                            |
+ * ├─────────────────────────────────────────────────┼────────────────────────────────┤
+ * | javax.microedition.io.Connector.comm            | comm                           |
+ * └─────────────────────────────────────────────────┴────────────────────────────────┘
+ * </pre>
  * 
  * <h2>Security of PushRegistry</h2>
  * 
