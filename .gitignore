@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/osx,java,linux,windows,eclipse,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=osx,java,linux,windows,eclipse,visualstudiocode
 
@@ -187,3 +186,6 @@ microemulator*
 
 .ipynb_checkpoints
 .vscode
+
+docs
+packages
