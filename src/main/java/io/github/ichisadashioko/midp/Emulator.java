@@ -1,38 +1,65 @@
 package io.github.ichisadashioko.midp;
 
 import java.awt.Frame;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-class MainWindow extends Frame implements MouseListener {
-    public void mouseClicked(MouseEvent e) {
-        System.out.println(e);
+class MainWindow extends Frame implements WindowListener {
+
+    @Override
+    public void windowActivated(WindowEvent arg0) {
+        System.out.println(arg0);
+
     }
 
-    public void mousePressed(MouseEvent e) {
-        System.out.println(e);
+    @Override
+    public void windowClosed(WindowEvent arg0) {
+        System.out.println(arg0);
+
     }
 
-    public void mouseReleased(MouseEvent e) {
-        System.out.println(e);
+    @Override
+    public void windowClosing(WindowEvent arg0) {
+        System.out.println(arg0);
+        dispose();
     }
 
-    public void mouseEntered(MouseEvent e) {
-        System.out.println(e);
+    @Override
+    public void windowDeactivated(WindowEvent arg0) {
+        System.out.println(arg0);
+
     }
 
-    public void mouseExited(MouseEvent e) {
-        System.out.println(e);
+    @Override
+    public void windowDeiconified(WindowEvent arg0) {
+        System.out.println(arg0);
+
     }
+
+    @Override
+    public void windowIconified(WindowEvent arg0) {
+        System.out.println(arg0);
+
+    }
+
+    @Override
+    public void windowOpened(WindowEvent arg0) {
+        System.out.println(arg0);
+    }
+
 }
 
 public class Emulator {
     public static void main(String[] args) {
-        System.out.println("Hello");
-
         MainWindow window = new MainWindow();
-        window.addMouseListener(window);
+
+        window.addWindowListener(window);
+
         window.setSize(640, 480);
         window.setVisible(true);
+
+        // TODO the main thread should have terminated after executing the following
+        // print command but it is not
+        System.out.println("after setVisible");
     }
 }
