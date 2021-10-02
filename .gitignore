@@ -183,6 +183,7 @@ microemulator*
 *.html
 
 .gradle
+build
 
 .ipynb_checkpoints
 .vscode
