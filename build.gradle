@@ -1,2 +1,10 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'application'
+
+application {
+    mainClass = 'io.github.ichisadashioko.midp.Emulator'
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
